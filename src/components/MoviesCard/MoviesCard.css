@@ -53,9 +53,14 @@
     width: 30px;
     height: 30px;
     border: none;
+    border-radius: 50%;
     background: transparent;
     padding: 0;
     cursor: pointer;
+}
+
+.like-button:hover {
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .heart {
@@ -65,7 +70,7 @@
     stroke-width: 1px;
 }
 
-.movies-card__like:hover .heart {
+.like-button:hover .heart {
     fill: #EE3465;
     stroke: #EE3465;
 }
