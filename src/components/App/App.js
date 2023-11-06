@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
 
+import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
+import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 
@@ -18,8 +20,14 @@ function App() {
     <div className="page">
       <Header />
       <Routes>
+        <Route path="/" element={
+          <Main />
+        } />
         <Route path="/movies" element={
           <Movies movies={getMovies} />
+        } />
+        <Route path="/saved-movies" element={
+          <SavedMovies movies={getMovies} />
         } />
       </Routes>
       <Footer />
