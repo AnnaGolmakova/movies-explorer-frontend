@@ -1,5 +1,6 @@
 import './App.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
+import Footer from '../Footer/Footer.js';
 
 const movies = [{
   "_id": "653509696a52e53b04e7bb08",
@@ -46,7 +47,10 @@ const movies = [{
 
 function App() {
   return (
-    <MoviesCardList movies={movies}></MoviesCardList>
+    <div>
+      <MoviesCardList movies={movies}></MoviesCardList>
+      <Footer />
+    </div>
   );
 }
 
