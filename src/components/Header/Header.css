@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
     gap: 44px;
+    padding: 18px 0 18px 0;
 }
 
 .header__navigation-items {
