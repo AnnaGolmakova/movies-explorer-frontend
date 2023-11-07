@@ -1,0 +1,16 @@
+.portfolio {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio__link {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -1.2px;
+    border-bottom: #424242 1px solid;
+}
+
+.portfolio__link_no-border {
+    border-bottom: none;
+}

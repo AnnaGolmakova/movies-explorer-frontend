@@ -15,14 +15,16 @@ function AboutProject() {
                     <p className="details__description">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
                 </article>
             </div>
-            <tr className="table-time">
-                <td className="table-time__one">1 неделя</td>
-                <td className="table-time__four">4 недели</td>
-            </tr>
-            <tr className="table-details">
-                <td className="table-details__backend">Back-end</td>
-                <td className="table-details__frontend">Front-end</td>
-            </tr>
+            <table className="timeline">
+                <tr className="timeline__row">
+                    <td className="timeline__cell timeline__cell_green">1 неделя</td>
+                    <td className="timeline__cell timeline__cell_grey">4 недели</td>
+                </tr>
+                <tr className="timeline__row">
+                    <td className="timeline__cell timeline__cell_description">Back-end</td>
+                    <td className="timeline__cell timeline__cell_description">Front-end</td>
+                </tr>
+            </table>
         </section>
     );
 }
