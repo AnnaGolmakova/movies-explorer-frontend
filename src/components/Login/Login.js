@@ -7,19 +7,19 @@ import logo from '../../images/logo.svg';
 function Login({ onLogin }) {
 
     return (
-        <main className="register">
+        <main className="login">
             <header className="header header_logo-only">
                 <Link to="/"> <img src={logo} className="header__logo" alt="Лого" /></Link >
-                <h1 className="register__greeting">Рады видеть!</h1>
+                <h1 className="login__greeting">Рады видеть!</h1>
             </header>
-            <form>
-                <div className="register__inputs">
+            <form className="login__form">
+                <div className="login__inputs">
                     <label for="email" className="form__field">E-mail</label>
                     <input
                         id="email"
                         name="email"
                         type="email"
-                        className="register__input"
+                        className="login__input"
                         required
                     />
                     <span className="form__input-error email-input-error"></span>
@@ -28,16 +28,16 @@ function Login({ onLogin }) {
                         id="password"
                         name="password"
                         type="password"
-                        className="register__input register__input_error"
+                        className="login__input login__input_error"
                         required
                     />
                     <span className="form__input-error password-input-error">Что-то пошло не так</span>
                 </div>
                 <button type="submit" className="save-button" onClick={onLogin}>Войти</button>
             </form >
-            <div className="register__signup">
+            <div className="login__signup">
                 <span>Еще не зарегистрированы?&nbsp;</span>
-                <Link to="/signup" className="register__login-link">Регистрация</Link>
+                <Link to="/signup" className="login__login-link">Регистрация</Link>
             </div>
         </main >
     );

@@ -10,7 +10,7 @@ function Header({ isAuthorized }) {
     const navigate = useNavigate();
 
     return (
-        <header className={`${location.pathname === "/" ? "header header_main" : ""} header`} >
+        <header className={`${location.pathname === "/" ? "header_main" : ""} header`} >
             <div className="header__container">
                 <Link to="/">
                     <img src={logo} className="header__logo" alt="Лого" />

@@ -6,7 +6,7 @@ import Preloader from '../Preloader/Preloader.js';
 
 
 function Movies({ movies }) {
-    const isLoading = true
+    const isLoading = false
 
     return (
         <main className="movies">

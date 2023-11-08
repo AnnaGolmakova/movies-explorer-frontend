@@ -12,7 +12,7 @@ function Register({ onRegister }) {
                 <Link to="/"> <img src={logo} className="header__logo" alt="Лого" /></Link >
                 <h1 className="register__greeting">Добро пожаловать!</h1>
             </header>
-            <form>
+            <form className="register__form">
                 <div className="register__inputs">
                     <label for="username" className="form__field">Имя</label>
                     <input
@@ -46,7 +46,7 @@ function Register({ onRegister }) {
             </form >
             <div className="register__signup">
                 <span>Уже зарегистрированы?&nbsp;</span>
-                <Link to="/sign-in" className="register__login-link">Войти</Link>
+                <Link to="/signin" className="register__login-link">Войти</Link>
             </div>
         </main >
     );

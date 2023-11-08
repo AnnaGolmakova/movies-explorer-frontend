@@ -5,18 +5,19 @@ function MoviesCard({ movie, showDelete }) {
     const durationHours = Math.floor(movie.duration / 60);
     const durationMinutes = movie.duration % 60;
     const image = movie.image;
+    const trailer = movie.trailerLink;
 
     return (
         <li className="movies-card">
-            <div className="movies-card__image-wrapper">
+            <a href={trailer} className="movies-card__image-wrapper">
                 <img src={image} className="movies-card__image" alt={nameRU} />
-            </div>
+            </a>
             <div className="movies-card__details">
                 <h2 className="movies-card__title">
                     {nameRU}
                 </h2>
                 <div className="movies-card__duration">
-                    {durationHours !== 0 ?? durationHours + 'ч '}{durationMinutes + ' м'}
+                    {durationHours !== 0 ? durationHours + 'ч ' : ''}{durationMinutes + ' м'}
                 </div>
                 {!showDelete ?
                     <button type="button" className="like-button" aria-label='Лайк'>
