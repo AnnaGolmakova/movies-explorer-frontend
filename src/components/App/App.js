@@ -7,6 +7,9 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 import Register from '../Register/Register.js';
+import Login from '../Login/Login.js';
+import Profile from '../Profile/Profile.js';
+import NotFound from '../NotFound/NotFound.js';
 
 import { getMovies } from '../../utils/MoviesApi.js'
 
@@ -15,26 +18,54 @@ import './App.css';
 
 function App() {
 
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const navigate = useNavigate();
+
+  function onLogin() {
+    setIsAuthorized(true);
+    navigate('/')
+  }
 
   return (
     <div className="page">
-      {/* <Header /> */}
       <Routes>
-        <Route path="/" element={
-          <Main />
-        } />
-        <Route path="/movies" element={
-          <Movies movies={getMovies} />
-        } />
-        <Route path="/saved-movies" element={
-          <SavedMovies movies={getMovies} />
-        } />
         <Route path="/signup" element={
           <Register />
         } />
+        <Route path="/signin" element={
+          <Login onLogin={onLogin} />
+        } />
+        <Route path="/profile" element={
+          <>
+            <Header isAuthorized={isAuthorized} />
+            <Profile />
+          </>
+        } />
+        <Route path="/" element={
+          <>
+            <Header isAuthorized={isAuthorized} />
+            <Main />
+            <Footer />
+          </>
+        } />
+        <Route path="/movies" element={
+          <>
+            <Header isAuthorized={isAuthorized} />
+            <Movies movies={getMovies} />
+            <Footer />
+          </>
+        } />
+        <Route path="/saved-movies" element={
+          <>
+            <Header isAuthorized={isAuthorized} />
+            <SavedMovies movies={getMovies} />
+            <Footer />
+          </>
+        } />
+        <Route path="*" element={
+          <NotFound />
+        } />
       </Routes>
-      {/* <Footer /> */}
     </div>
   );
 }

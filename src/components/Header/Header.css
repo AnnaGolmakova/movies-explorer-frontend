@@ -77,19 +77,7 @@
     background: url(../../images/account.svg) no-repeat;
 }
 
-.menu-button {
-    width: 44px;
-    height: 44px;
-    display: none;
-    background: url(../../images/menu.svg) no-repeat;
-    border: none;
-    grid-area: button;
-}
-
 @media only screen and (max-width: 1024px) {
-    .menu-button {
-        display: block;
-    }
 
     .header__account-button,
     .header__navigation {
