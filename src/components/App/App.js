@@ -6,6 +6,7 @@ import Movies from '../Movies/Movies.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
+import Register from '../Register/Register.js';
 
 import { getMovies } from '../../utils/MoviesApi.js'
 
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <div className="page">
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={
           <Main />
@@ -29,8 +30,11 @@ function App() {
         <Route path="/saved-movies" element={
           <SavedMovies movies={getMovies} />
         } />
+        <Route path="/signup" element={
+          <Register />
+        } />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

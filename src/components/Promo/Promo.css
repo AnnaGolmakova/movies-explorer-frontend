@@ -1,4 +1,4 @@
-.promo__pic {
+.promo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,12 @@
     width: 100%;
     height: 524px;
 
+}
+
+@media only screen and (max-width: 767px) {
+    .promo {
+        background-size: 248px 248px;
+    }
 }
 
 .promo__header {

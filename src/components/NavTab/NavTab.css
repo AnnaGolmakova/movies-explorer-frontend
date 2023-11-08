@@ -5,6 +5,7 @@
     background-color: #272727;
     padding: 0;
     height: 66px;
+    width: 100%;
 }
 
 .nav-tab__items {
@@ -21,4 +22,11 @@
     font-weight: 500;
     line-height: 16px;
     margin: 0 40px 0 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .nav-tab__link {
+        font-size: 11px;
+        margin: 0 24px 0 0;
+    }
 }

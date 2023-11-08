@@ -9,7 +9,7 @@ import Portfolio from '../Portfolio/Portfolio.js'
 function Main() {
 
     return (
-        <main className="movies">
+        <main className="content">
             <Promo />
             <NavTab />
             <AboutProject />
