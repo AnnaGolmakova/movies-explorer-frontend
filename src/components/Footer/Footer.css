@@ -31,6 +31,7 @@
     align-items: center;
     color: #8B8B8B;
     width: 100%;
+    margin: 0 0 20px 0;
 }
 
 .footer__details {
@@ -57,6 +58,7 @@
     .footer__copyright {
         order: 1;
         color: #8B8B8B;
+        margin: 0;
     }
 }
 
@@ -73,6 +75,7 @@
 @media only screen and (max-width: 767px) {
     .footer__links {
         flex-direction: column;
+        gap: 12px;
     }
 }
 

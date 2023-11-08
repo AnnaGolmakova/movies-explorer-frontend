@@ -23,9 +23,18 @@
     font-size: 22px;
     font-weight: 400;
     letter-spacing: -0.88px;
+    line-height: 27px;
     padding: 0 0 23px 0;
     margin: 0;
     border-bottom: #DADADA 1px solid;
+}
+
+@media only screen and (max-width: 767px) {
+    .about-me__title {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 0 0 28px 0;
+    }
 }
 
 .about-me__details {
@@ -36,12 +45,37 @@
     margin: 66px 0;
 }
 
+@media only screen and (max-width: 767px) {
+    .about-me__details {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 60px 0;
+        gap: 40px;
+    }
+}
+
 .description__header {
     font-size: 50px;
     font-weight: 400;
     line-height: 58px;
     letter-spacing: -2px;
     margin: 0 0 18px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .description__header {
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0 0 16px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .description__header {
+        font-size: 30px;
+        line-height: 36px;
+        margin: 0 0 20px 0;
+    }
 }
 
 .description__occupation {
@@ -51,12 +85,42 @@
     margin: 0 0 26px 0;
 }
 
+@media only screen and (max-width: 1024px) {
+    .description__occupation {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 20px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .description__occupation {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
 .description__details {
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
     line-height: 22px;
     margin: 0 0 99px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .description__details {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 87px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .description__details {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 40px 0;
+    }
 }
 
 .links__github {
