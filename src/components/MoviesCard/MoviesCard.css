@@ -74,3 +74,25 @@
     fill: #EE3465;
     stroke: #EE3465;
 }
+
+.delete-button {
+    display: none;
+    background: url(../../images/delete.svg) no-repeat;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 9px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.movies-card:hover .delete-button {
+    display: block;
+}

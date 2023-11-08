@@ -1,7 +1,7 @@
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css'
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, showDelete }) {
 
     return (
         <section className="pictures">
@@ -10,6 +10,7 @@ function MoviesCardList({ movies }) {
                     <MoviesCard
                         key={i}
                         movie={movie}
+                        showDelete={showDelete}
                     />
                 ))}
             </ul>

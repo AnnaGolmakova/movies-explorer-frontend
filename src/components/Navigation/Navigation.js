@@ -37,7 +37,7 @@ function Navigation() {
                 ref={dialog}
                 onClose={() => setIsOpen(false)}
             >
-                <button type="button" className="close-button" onClick={() => close()}>
+                <button type="button" className="close-button" aria-label="Закрыть" onClick={() => close()}>
                 </button>
                 <ul className="navigation__list">
                     <li>

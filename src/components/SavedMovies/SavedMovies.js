@@ -11,7 +11,7 @@ function SavedMovies({ movies }) {
                 <SearchForm />
                 <FilterCheckbox />
             </section>
-            <MoviesCardList movies={movies}></MoviesCardList>
+            <MoviesCardList movies={movies} showDelete={true}></MoviesCardList>
         </main>
     );
 }
