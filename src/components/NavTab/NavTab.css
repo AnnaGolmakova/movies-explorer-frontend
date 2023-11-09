@@ -22,6 +22,7 @@
     font-weight: 500;
     line-height: 16px;
     margin: 0 40px 0 0;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 767px) {
@@ -29,4 +30,8 @@
         font-size: 11px;
         margin: 0 24px 0 0;
     }
+}
+
+.nav-tab__link:hover {
+    opacity: 0.3;
 }

@@ -14,7 +14,7 @@ function Login({ onLogin }) {
             </header>
             <form className="login__form">
                 <div className="login__inputs">
-                    <label for="email" className="form__field">E-mail</label>
+                    <label htmlFor="email" className="form__field">E-mail</label>
                     <input
                         id="email"
                         name="email"
@@ -23,7 +23,7 @@ function Login({ onLogin }) {
                         required
                     />
                     <span className="form__input-error email-input-error"></span>
-                    <label for="password" className="form__field">Пароль</label>
+                    <label htmlFor="password" className="form__field">Пароль</label>
                     <input
                         id="password"
                         name="password"

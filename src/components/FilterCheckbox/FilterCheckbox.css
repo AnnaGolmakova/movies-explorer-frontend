@@ -30,6 +30,11 @@
     background-color: rgba(47, 47, 47, 1);
     -webkit-transition: .2s;
     transition: .2s;
+    cursor: pointer;
+}
+
+.switch__slider:hover {
+    opacity: 0.3;
 }
 
 .switch__slider:before {

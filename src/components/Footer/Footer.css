@@ -54,11 +54,14 @@
     }
 }
 
+.footer__copyright {
+    margin: 0;
+}
+
 @media only screen and (max-width: 767px) {
     .footer__copyright {
         order: 1;
         color: #8B8B8B;
-        margin: 0;
     }
 }
 
@@ -82,4 +85,9 @@
 .link {
     color: #FFF;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.link:hover {
+    opacity: 0.3;
 }

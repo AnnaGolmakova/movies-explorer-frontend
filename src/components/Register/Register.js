@@ -14,7 +14,7 @@ function Register({ onRegister }) {
             </header>
             <form className="register__form">
                 <div className="register__inputs">
-                    <label for="username" className="form__field">Имя</label>
+                    <label htmlFor="username" className="form__field">Имя</label>
                     <input
                         id="username"
                         name="name"
@@ -23,7 +23,7 @@ function Register({ onRegister }) {
                         required
                     />
                     <span className="form__input-error name-input-error"></span>
-                    <label for="email" className="form__field">E-mail</label>
+                    <label htmlFor="email" className="form__field">E-mail</label>
                     <input
                         id="email"
                         name="email"
@@ -32,7 +32,7 @@ function Register({ onRegister }) {
                         required
                     />
                     <span className="form__input-error email-input-error"></span>
-                    <label for="password" className="form__field">Пароль</label>
+                    <label htmlFor="password" className="form__field">Пароль</label>
                     <input
                         id="password"
                         name="password"

@@ -1,4 +1,5 @@
 import './SearchForm.css';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.js';
 
 function SearchForm() {
     return (
@@ -13,6 +14,7 @@ function SearchForm() {
             </input>
             <button type="button" className="search-form__button">
             </button>
+            <FilterCheckbox />
         </form>
     )
 }

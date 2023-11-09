@@ -123,12 +123,17 @@
     }
 }
 
-.links__github {
+.github {
     color: #FFF;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
+    cursor: pointer;
+}
+
+.github:hover {
+    opacity: 0.3;
 }
 
 .my-photo {
