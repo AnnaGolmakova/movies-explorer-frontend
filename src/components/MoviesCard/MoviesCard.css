@@ -37,6 +37,19 @@
     overflow: hidden;
 }
 
+@media only screen and (max-width: 1024px) {
+    .movies-card__details {
+        padding: 14px;
+        gap: 15px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .movies-card__details {
+        gap: 14px;
+    }
+}
+
 .movies-card__title {
     font-size: 13px;
     font-weight: 500;
