@@ -11,7 +11,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 1420px;
-    padding: 110px 70px;
+    padding: 100px 70px;
 }
 
 @media only screen and (max-width: 1024px) {

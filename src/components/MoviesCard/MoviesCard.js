@@ -4,7 +4,7 @@ function MoviesCard({ movie, showDelete }) {
     const nameRU = movie.nameRU;
     const durationHours = Math.floor(movie.duration / 60);
     const durationMinutes = movie.duration % 60;
-    const image = movie.image;
+    const image = 'https://api.nomoreparties.co' + movie.image.url;
     const trailer = movie.trailerLink;
 
     return (
@@ -17,7 +17,7 @@ function MoviesCard({ movie, showDelete }) {
                     {nameRU}
                 </h2>
                 <div className="movies-card__duration">
-                    {durationHours !== 0 ? durationHours + 'ч ' : ''}{durationMinutes + ' м'}
+                    {durationHours !== 0 ? durationHours + 'ч ' : ''}{durationMinutes !== 0 ? durationMinutes + ' м' : ''}
                 </div>
                 {!showDelete ?
                     <button type="button" className="like-button" aria-label='Лайк'>

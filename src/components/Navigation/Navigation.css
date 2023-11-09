@@ -114,10 +114,11 @@
 }
 
 .account-button::after {
+    border-radius: 50%;
     content: " ";
     width: 26px;
     height: 26px;
-    background: url(../../images/account.svg) no-repeat;
+    background: #313131 url(../../images/account.svg) no-repeat;
 }
 
 .menu-button {
@@ -130,7 +131,7 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
     .menu-button {
         display: block;
     }

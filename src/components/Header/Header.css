@@ -89,14 +89,20 @@
 }
 
 .header__account-button:hover {
-    background-color: #282828;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .header__account-button::after {
+    background-color: #313131;
+    border-radius: 50%;
     content: " ";
     width: 26px;
     height: 26px;
     background: url(../../images/account.svg) no-repeat;
+}
+
+.header_main .header__account-button::after {
+    background-color: #0F4157;
 }
 
 @media only screen and (max-width: 768px) {

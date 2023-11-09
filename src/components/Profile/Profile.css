@@ -58,7 +58,7 @@
     margin: 0;
 }
 
-.profile_buttons {
+.profile__buttons {
     align-self: end;
     display: flex;
     flex-direction: column;

@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 
-
 function Profile() {
+    const navigate = useNavigate();
 
     return (
         <main className="profile">
@@ -16,9 +17,9 @@ function Profile() {
                     <p className="profile__data">ann.golmakova@gmail.com</p>
                 </div>
             </div>
-            <div className='profile_buttons'>
+            <div className='profile__buttons'>
                 <button type="button" className="profile-button">Редактировать</button>
-                <button type="button" className="profile-button profile-button_exit">Выйти из аккаунта</button>
+                <button type="button" className="profile-button profile-button_exit" onClick={() => navigate("/signin")}>Выйти из аккаунта</button>
             </div>
         </main >
     );
