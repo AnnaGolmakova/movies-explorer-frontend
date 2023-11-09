@@ -20,6 +20,8 @@ function Login({ onLogin }) {
                             id="email"
                             name="email"
                             type="email"
+                            min="2"
+                            max="30"
                             className="form__input"
                             placeholder="example@example.ru"
                             required
@@ -30,6 +32,7 @@ function Login({ onLogin }) {
                             id="password"
                             name="password"
                             type="password"
+                            min="6"
                             className="form__input form__input_error"
                             placeholder="Введите пароль"
                             required

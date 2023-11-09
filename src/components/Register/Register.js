@@ -20,6 +20,8 @@ function Register({ onRegister }) {
                             id="username"
                             name="name"
                             type="text"
+                            min="2"
+                            max="30"
                             className="register__input"
                             placeholder="Ваше имя"
                             required
@@ -40,6 +42,7 @@ function Register({ onRegister }) {
                             id="password"
                             name="password"
                             type="password"
+                            min="6"
                             className="register__input register__input_error"
                             placeholder="Введите пароль"
                             required
