@@ -1,14 +1,15 @@
 .promo {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
-    background: no-repeat center url('../../images/landing-logo.svg');
+    background: no-repeat center 82px url('../../images/landing-logo.svg');
     background-color: #073042;
     width: 100%;
     height: 524px;
-
+    padding-bottom: 40px;
 }
 
 @media only screen and (max-width: 767px) {

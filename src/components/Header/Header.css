@@ -34,6 +34,7 @@
 }
 
 .header__logo {
+    display: block;
     cursor: pointer;
 }
 
@@ -98,7 +99,7 @@
     background: url(../../images/account.svg) no-repeat;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
 
     .header__account-button,
     .header__navigation {
