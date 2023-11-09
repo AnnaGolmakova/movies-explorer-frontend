@@ -116,29 +116,24 @@
 
 .timeline {
     display: grid;
-    grid-template-columns: 1fr 4fr;
     grid-template-rows: 36px 32px;
-    border-collapse: collapse;
-    border-spacing: 0;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-}
-
-@media only screen and (max-width: 767px) {
-    .timeline {
-        font-size: 11px;
-        line-height: 13px;
-        grid-template-columns: 100px 1fr;
-        grid-template-rows: 36px 24px;
-    }
+    margin: 0;
 }
 
 .timeline__row {
     display: grid;
     grid-column: span 2;
-    grid-template-columns: subgrid;
+    grid-template-columns: 1fr 4fr;
     text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+    .timeline__row {
+        grid-template-columns: 100px 1fr;
+    }
 }
 
 .timeline__cell {
