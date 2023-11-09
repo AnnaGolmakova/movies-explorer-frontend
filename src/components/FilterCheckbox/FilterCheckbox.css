@@ -7,6 +7,7 @@
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 767px) {
@@ -19,6 +20,9 @@
     opacity: 0;
     width: 0;
     height: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
 }
 
 .switch__slider {
@@ -33,8 +37,8 @@
     cursor: pointer;
 }
 
-.switch__slider:hover {
-    opacity: 0.3;
+.switch:hover .switch__slider {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .switch__slider:before {
@@ -53,7 +57,10 @@
 
 .switch__input:checked+.switch__slider {
     background-color: #3DDC84;
-    ;
+}
+
+.switch:hover .switch__input:checked+.switch__slider {
+    background-color: #2a9c5e;
 }
 
 .switch__input:checked+.switch__slider:before {

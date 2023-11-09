@@ -10,9 +10,18 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 1024px) {
+    .promo {
+        background-position: center 224px;
+        grid-template-rows: 784px 66px;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .promo {
         background-size: 248px 248px;
+        background-position: center 142px;
+        grid-template-rows: 570px 66px;
     }
 }
 
@@ -25,11 +34,18 @@
     max-width: 730px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .promo__header {
+        margin: 0 auto 20px auto;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .promo__header {
         font-size: 31px;
         font-weight: 400;
         line-height: 39px;
         letter-spacing: -1.24px;
+        margin: 0 auto 30px auto;
     }
 }

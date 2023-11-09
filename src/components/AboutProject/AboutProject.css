@@ -130,6 +130,7 @@
         font-size: 11px;
         line-height: 13px;
         grid-template-columns: 100px 1fr;
+        grid-template-rows: 36px 24px;
     }
 }
 

@@ -9,13 +9,13 @@
 
 @media only screen and (max-width: 1024px) {
     .portfolio {
-        padding: 24px 50px 90px 50px;
+        padding: 24px 50px 71px 50px;
     }
 }
 
 @media only screen and (max-width: 767px) {
     .portfolio {
-        padding: 4px 14px 0 14px;
+        padding: 4px 14px 51px 14px;
     }
 }
 
@@ -76,24 +76,30 @@
 
 .portfolio__link::after {
     content: "";
-    width: 29px;
-    height: 60px;
+    width: 18px;
+    height: 17px;
     position: absolute;
-    top: 18px;
-    right: 0;
+    top: 33px;
+    right: 6px;
     background: url(../../images/arrow.svg) no-repeat center center;
+    background-size: 100%;
 }
 
 @media only screen and (max-width: 1024px) {
     .portfolio__link::after {
-        width: 27px;
+        width: 17px;
+        height: 16px;
+        top: 34px;
+        right: 6px;
     }
 }
 
 @media only screen and (max-width: 767px) {
     .portfolio__link::after {
-        width: 18px;
-        height: 28px;
+        width: 10px;
+        height: 10px;
+        top: 27px;
+        right: 4px;
     }
 }
 

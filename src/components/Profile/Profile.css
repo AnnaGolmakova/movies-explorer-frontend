@@ -26,6 +26,10 @@
     }
 }
 
+.profile__content {
+    display: contents;
+}
+
 .profile__greeting {
     font-size: 24px;
     font-weight: 500;
@@ -35,7 +39,7 @@
 }
 
 .profile__fields {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .profile__field {

@@ -93,12 +93,11 @@
 }
 
 .header__account-button::after {
-    background-color: #313131;
     border-radius: 50%;
     content: " ";
     width: 26px;
     height: 26px;
-    background: url(../../images/account.svg) no-repeat;
+    background: #313131 url(../../images/account.svg) no-repeat;
 }
 
 .header_main .header__account-button::after {

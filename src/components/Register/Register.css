@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 20px auto;
+    margin: 70px auto;
     padding: 0 30px;
     width: 100%;
     max-width: 456px;
@@ -17,15 +17,14 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
-    .register__form {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
+.form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.header_logo-only {
+.register__heading {
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -33,9 +32,22 @@
 }
 
 @media only screen and (max-width: 767px) {
-    .header_logo-only {
+    .register__heading {
         align-items: center;
     }
+}
+
+.register__logo {
+    display: block;
+    cursor: pointer;
+}
+
+.register__logo:hover {
+    opacity: 0.3;
+}
+
+.register__content {
+    display: contents;
 }
 
 .register__greeting {
@@ -55,7 +67,6 @@
 .register__inputs {
     display: flex;
     flex-direction: column;
-    margin-bottom: 69px;
 }
 
 @media only screen and (max-width: 767px) {
