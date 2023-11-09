@@ -9,6 +9,12 @@
     overflow: hidden;
 }
 
+@media only screen and (max-width: 767px) {
+    .movies-card {
+        aspect-ratio: 300 / 237;
+    }
+}
+
 .movies-card__image-wrapper {
     display: flex;
     flex-direction: column;
