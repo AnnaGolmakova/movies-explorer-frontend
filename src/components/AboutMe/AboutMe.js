@@ -11,7 +11,7 @@ function AboutMe() {
                     <h3 className="description__header">Анна</h3>
                     <h4 className="description__occupation">Фронтенд-разработчик, 33 года</h4>
                     <p className="description__details">Я живу в Екатеринбурге, закончила германское отделение филологического факультета УрФУ. У меня есть муж и две дочки. Я люблю вышивать крестиком и учить новые языки. Пока что в моем арсенале английский, французский и немецкий. До недавнего времени я работала переводчиком. Некоторое время назад почувствовала в себе интерес к программированию. После того, как прошла курс по веб-разработке, начала заниматься фриланс-заказами.</p>
-                    <a href="https://github.com/AnnaGolmakova" className="github">Github</a>
+                    <a href="https://github.com/AnnaGolmakova" className="github" target="_blank" rel="noreferrer">Github</a>
                 </article>
                 <img src={photo} className="my-photo" alt="Анна Гольмакова"></img>
             </div>
