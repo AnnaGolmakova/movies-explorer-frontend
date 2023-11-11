@@ -1,0 +1,40 @@
+.movies {
+    width: 100%;
+    max-width: 1420px;
+    box-sizing: border-box;
+    padding: 0 70px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .movies {
+        padding: 0 30px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .movies {
+        padding: 0 10px;
+    }
+}
+
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    padding: 60px 0 69px 0;
+    border-bottom: #424242 1px solid;
+    margin: 0 0 80px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .search-section {
+        padding: 80px 0 50px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .search-section {
+        margin: 0 0 50px 0;
+    }
+}
