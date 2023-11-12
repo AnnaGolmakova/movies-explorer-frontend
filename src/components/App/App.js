@@ -11,8 +11,6 @@ import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 import NotFound from '../NotFound/NotFound.js';
 
-import { getMovies } from '../../utils/MoviesApi.js'
-
 import './App.css';
 
 
@@ -51,14 +49,14 @@ function App() {
         <Route path="/movies" element={
           <>
             <Header isAuthorized={isAuthorized} />
-            <Movies movies={getMovies} />
+            <Movies />
             <Footer />
           </>
         } />
         <Route path="/saved-movies" element={
           <>
             <Header isAuthorized={isAuthorized} />
-            <SavedMovies movies={getMovies} />
+            <SavedMovies movies={[]} />
             <Footer />
           </>
         } />
