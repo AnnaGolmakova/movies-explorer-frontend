@@ -1,14 +1,12 @@
-const baseURL = 'https://api.nomoreparties.co/beatfilm-movies';
+import checkResponse from './checkResponse.js';
 
-function _checkResponse(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
-}
+const baseURL = 'https://api.nomoreparties.co/beatfilm-movies';
 
 function getMovies() {
     return fetch(`${baseURL}`, {
         method: "GET"
     })
-        .then((res) => _checkResponse(res))
+        .then((res) => checkResponse(res))
 }
 
 
