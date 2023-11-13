@@ -1,9 +1,9 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onChange }) {
     return (
         <label className="switch">
-            <input type="checkbox" className="switch__input" />
+            <input name="isShort" type="checkbox" className="switch__input" onChange={onChange} />
             <span className="switch__slider" />
             Короткометражки
         </label>
