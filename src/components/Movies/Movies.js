@@ -8,32 +8,42 @@ import { useState, useEffect } from 'react';
 
 
 function Movies() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [movies, setMovies] = useState([]);
-    const [results, setResults] = useState([]);
-    const [query, setQuery] = useState('');
-    const [shortsOnly, setShortsOnly] = useState(false);
+    const [results, setResults] = useState(localStorage.getItem("results") ? JSON.parse(localStorage.getItem("results")) : []);
+    const [query, setQuery] = useState(localStorage.getItem("query") ? localStorage.getItem("query") : '');
+    const [shortsOnly, setShortsOnly] = useState(localStorage.getItem("shortsOnly") ? JSON.parse(localStorage.getItem("shortsOnly")) : false);
 
     useEffect(() => {
-        setIsLoading(true)
-        getMovies()
-            .then(result => {
-                setMovies(result)
-            })
-            .catch(console.log)
-            .finally(() => {
-                console.log(movies)
-                setIsLoading(false);
-            });
-    }, []);
+        localStorage.setItem("query", query);
+        localStorage.setItem("results", JSON.stringify(results));
+        localStorage.setItem("shortsOnly", shortsOnly);
+    }, [query, shortsOnly, results]);
 
     useEffect(() => {
-        setResults(movies.filter((movie) => shortsOnly ? isShort(movie) : true).filter((movie) => isMatchedByName(query, movie)))
+        if (movies.length !== 0) {
+            setResults(movies
+                .filter((movie) => shortsOnly ? isShort(movie) : true)
+                .filter((movie) => isMatchedByName(query, movie))
+            )
+        }
     }, [movies, query, shortsOnly])
 
     function searchMovies(inputs) {
+        if (movies.length === 0) {
+            setIsLoading(true)
+            getMovies()
+                .then(result => {
+                    setMovies(result);
+                })
+                .catch(console.log)
+                .finally(() => {
+                    setIsLoading(false);
+                })
+        }
+
         setShortsOnly(inputs.hasOwnProperty('isShort') ? inputs.isShort : false)
-        setQuery(inputs.hasOwnProperty('query') ? inputs.query : '')
+        setQuery(inputs.hasOwnProperty('query') ? inputs.query : query)
     }
 
     function isMatchedByName(query, movie) {
@@ -49,12 +59,12 @@ function Movies() {
     return (
         <main className="movies">
             <section className="search-section">
-                <SearchForm onSubmit={searchMovies} />
+                <SearchForm onSubmit={searchMovies} query={query} shortsOnly={shortsOnly} />
             </section>
             {isLoading &&
                 <Preloader />
             }
-            {!isLoading &&
+            {!isLoading && query !== '' &&
                 <MoviesCardList movies={results}></MoviesCardList>
             }
         </main>

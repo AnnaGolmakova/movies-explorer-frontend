@@ -4,6 +4,7 @@ import './Register.css';
 import logo from '../../images/logo.svg';
 
 
+
 function Register({ onRegister }) {
 
     return (
