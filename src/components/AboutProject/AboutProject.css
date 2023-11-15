@@ -123,6 +123,10 @@
     margin: 0;
 }
 
+.timeline__content {
+    display: contents;
+}
+
 .timeline__row {
     display: grid;
     grid-column: span 2;
