@@ -1,7 +1,6 @@
 import './FilterCheckbox.css';
 
 function FilterCheckbox({ checked = false, onChange }) {
-    console.log('Чекбокс состояние', checked)
     return (
         <label className="switch">
             <input name="isShort" type="checkbox" className="switch__input" onChange={onChange} checked={checked} />

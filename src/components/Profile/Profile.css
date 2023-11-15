@@ -69,6 +69,14 @@
 
 }
 
+.profile__data {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    text-align: right;
+}
+
 .profile__label,
 .profile__data {
     margin: 0;
@@ -107,6 +115,14 @@
 
 .profile-button:hover {
     opacity: 0.3;
+}
+
+.profile-button:disabled {
+    opacity: 0.3;
+}
+
+.profile-button:hover:disabled {
+    cursor: unset;
 }
 
 .profile-button_exit {

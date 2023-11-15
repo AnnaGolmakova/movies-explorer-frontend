@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Login.css';
@@ -5,6 +6,28 @@ import logo from '../../images/logo.svg';
 
 
 function Login({ onLogin }) {
+    const [formData, setFormData] = useState({});
+    const [errors, setErrors] = useState({});
+
+    function handleChange(event) {
+        const name = event.target.name;
+        setFormData({ ...formData, [name]: event.target.value })
+        setErrors({ ...errors, [name]: event.target.validationMessage });
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        onLogin(formData);
+    }
+
+    function isEmpty() {
+        return !formData.email || !formData.password
+    }
+
+    function isValid() {
+        return errors.email || errors.password
+    }
+
 
     return (
         <main className="login">
@@ -13,33 +36,40 @@ function Login({ onLogin }) {
                 <h1 className="login__greeting">Рады видеть!</h1>
             </section>
             <section className="login__content">
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                     <div className="form__inputs">
                         <label htmlFor="email" className="form__field">E-mail</label>
                         <input
                             id="email"
                             name="email"
                             type="email"
-                            min="2"
-                            max="30"
-                            className="form__input"
+                            minLength="2"
+                            maxLength="30"
+                            className={`form__input ${errors.email ? 'form__input_error' : ''}`}
                             placeholder="example@example.ru"
                             required
+                            onChange={handleChange}
+                            pattern=".+@.+\..+"
                         />
-                        <span className="form__input-error email-input-error"></span>
+                        <span className="form__input-error email-input-error">{errors.email}</span>
                         <label htmlFor="password" className="form__field">Пароль</label>
                         <input
                             id="password"
                             name="password"
                             type="password"
-                            min="6"
-                            className="form__input form__input_error"
+                            minLength="8"
+                            className={`form__input ${errors.email ? 'form__input_error' : ''}`}
                             placeholder="Введите пароль"
                             required
+                            onChange={handleChange}
                         />
-                        <span className="form__input-error password-input-error">Что-то пошло не так</span>
+                        <span className="form__input-error password-input-error">{errors.password}</span>
                     </div>
-                    <button type="submit" className="save-button" onClick={onLogin}>Войти</button>
+                    <button
+                        type="submit" className="save-button" disabled={isEmpty() || isValid()}
+                    >
+                        Войти
+                    </button>
                 </form >
                 <div className="login__signup">
                     <span>Еще не зарегистрированы?&nbsp;</span>

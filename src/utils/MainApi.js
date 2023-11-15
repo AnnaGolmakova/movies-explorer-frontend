@@ -1,6 +1,7 @@
 import checkResponse from './checkResponse.js';
 
-const BASE_URL = `https://api.movies.golmakova.nomoredomainsrocks.ru`;
+// const BASE_URL = `https://api.movies.golmakova.nomoredomainsrocks.ru`;
+const BASE_URL = `http://localhost:3001`;
 
 
 function request(url, options) {
@@ -51,7 +52,7 @@ export const setUserInfo = (name, email) => {
     })
 }
 
-export const getMovies = () => {
+export const getMyMovies = () => {
     return request(`${BASE_URL}/movies`, {
         method: "GET",
         credentials: 'include',
