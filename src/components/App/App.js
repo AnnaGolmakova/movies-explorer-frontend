@@ -11,6 +11,7 @@ import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 import NotFound from '../NotFound/NotFound.js';
 import Message from '../Message/Message.js';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 import { authorize, register, getUserInfo, setUserInfo, getMyMovies, createMovie, deleteMovie } from '../../utils/MainApi.js';
 import RequestError from '../../errors/request-error.js';
@@ -134,24 +135,24 @@ function App() {
             </>
           } />
           <Route path="/profile" element={
-            <>
+            <ProtectedRoute isAuthorized={isAuthorized}>
               <Header isAuthorized={isAuthorized} />
               <Profile onLogout={handleLogout} onEdit={handleProfileEdit} />
-            </>
+            </ProtectedRoute>
           } />
           <Route path="/movies" element={
-            <>
+            <ProtectedRoute isAuthorized={isAuthorized}>
               <Header isAuthorized={isAuthorized} />
               <Movies onLike={handleAddMovie} onDislike />
               <Footer />
-            </>
+            </ProtectedRoute>
           } />
           <Route path="/saved-movies" element={
-            <>
+            <ProtectedRoute isAuthorized={isAuthorized}>
               <Header isAuthorized={isAuthorized} />
               <SavedMovies movies={[]} />
               <Footer />
-            </>
+            </ProtectedRoute>
           } />
           <Route path="*" element={
             <NotFound />
