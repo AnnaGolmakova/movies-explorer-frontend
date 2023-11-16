@@ -27,6 +27,10 @@ function Profile({ onEdit, onLogout }) {
         onEdit(formData);
     }
 
+    function isEdited() {
+        return currentUser.email !== formData.email || currentUser.name !== formData.name
+    }
+
     function isEmpty() {
         return !formData.email || !formData.name
     }
@@ -75,7 +79,7 @@ function Profile({ onEdit, onLogout }) {
                     <button
                         type="button"
                         className="profile-button"
-                        disabled={isEmpty() || isValid()}
+                        disabled={isEmpty() || isValid() || !isEdited()}
                         onClick={handleSubmit}
                     >
                         Редактировать

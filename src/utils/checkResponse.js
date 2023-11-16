@@ -6,7 +6,7 @@ function checkResponse(res) {
         return json;
     }
     return json.then((result) => {
-        throw new RequestError(result.message, res.status);
+        throw new RequestError(result.message, res.status, result);
     });
 }
 

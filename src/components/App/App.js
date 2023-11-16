@@ -24,29 +24,31 @@ function App() {
 
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    "name": "",
-    "email": "",
-    "movies": [],
+    _id: "",
+    name: "",
+    email: "",
+    movies: [],
   });
 
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getUserInfo()
       .then((res) => {
-        console.log(res)
         setIsAuthorized(true)
-        setCurrentUser({
-          name: res.name,
-          email: res.email
-        })
+        setCurrentUser(res)
       })
       .catch((err) => {
         setIsAuthorized(false)
       })
   }, [isAuthorized])
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   useEffect(() => {
     if (isAuthorized) {
@@ -58,18 +60,25 @@ function App() {
       })
         .catch(console.log)
     }
-  }, [currentUser, isAuthorized])
+  }, [currentUser._id, isAuthorized]);
 
   function resetErrorMessage() {
     setErrorMessage(null);
   }
 
+  function resetSuccessMessage() {
+    setSuccessMessage(null);
+  }
+
   function handleError(error) {
-    console.log(error, error.code)
+    console.log(error, error.code, error.body)
     if (error instanceof RequestError) {
-      setErrorMessage(error.message);
+      if (error.status === 400) {
+        return setErrorMessage("Проверьте правильность заполнения данных");
+      }
+      return setErrorMessage(error.message);
     } else {
-      setErrorMessage("Что-то пошло не так! Попробуйте ещё раз.");
+      setErrorMessage("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
     }
   }
 
@@ -83,9 +92,10 @@ function App() {
   }
 
   function handleProfileEdit(data) {
-    setUserInfo(data.email, data.name)
+    setUserInfo(data.name, data.email)
       .then((res) => {
         setCurrentUser({ ...currentUser, name: data.name, email: data.email })
+        setSuccessMessage("Вы успешно отредактировали профиль");
       })
       .catch(handleError)
   }
@@ -106,9 +116,10 @@ function App() {
     })
     setIsAuthorized(false);
     setCurrentUser({
-      "name": "",
-      "email": "",
-      "movies": [],
+      _id: "",
+      name: "",
+      email: "",
+      movies: [],
     });
     navigate("/signin");
   }
@@ -124,6 +135,9 @@ function App() {
     <div className="page">
       {errorMessage &&
         <Message name="error" icon="error" isOpened={true} title={errorMessage} onClose={resetErrorMessage} />
+      }
+      {successMessage &&
+        <Message name="success" icon="done" isOpened={true} title={successMessage} onClose={resetSuccessMessage} />
       }
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
