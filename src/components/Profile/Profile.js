@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
+
 
 function Profile({ onEdit, onLogout }) {
     const [formData, setFormData] = useState({});
     const [errors, setErrors] = useState({});
+
+    const currentUser = useContext(CurrentUserContext);
+
+    useEffect(() => {
+        setFormData({
+            name: currentUser.name,
+            email: currentUser.email
+        }, [])
+    }, [currentUser.name, currentUser.email])
 
     function handleChange(event) {
         const name = event.target.name;
@@ -27,7 +38,7 @@ function Profile({ onEdit, onLogout }) {
     return (
         <main className="profile">
             <section className="profile__content">
-                <h1 className="profile__greeting">Привет, Анна!</h1>
+                <h1 className="profile__greeting">Привет, {currentUser.name}!</h1>
                 <form className="profile__fields" onSubmit={handleSubmit}>
                     <div className="profile__field">
                         <label htmlFor="username" className="profile__label">Имя</label>

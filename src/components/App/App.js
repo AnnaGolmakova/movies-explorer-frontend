@@ -36,6 +36,7 @@ function App() {
   useEffect(() => {
     getUserInfo()
       .then((res) => {
+        console.log(res)
         setIsAuthorized(true)
         setCurrentUser({
           name: res.name,
@@ -45,7 +46,7 @@ function App() {
       .catch((err) => {
         setIsAuthorized(false)
       })
-  }, [])
+  }, [isAuthorized])
 
   useEffect(() => {
     if (isAuthorized) {
@@ -104,6 +105,11 @@ function App() {
       credentials: 'include'
     })
     setIsAuthorized(false);
+    setCurrentUser({
+      "name": "",
+      "email": "",
+      "movies": [],
+    });
     navigate("/signin");
   }
 
