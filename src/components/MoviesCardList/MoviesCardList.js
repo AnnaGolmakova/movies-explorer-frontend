@@ -2,7 +2,7 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css'
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({ movies, showDelete, onLike }) {
+function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
     const [moviesCount, setMoviesCount] = useState(12);
     const [increment, setIncrement] = useState(3);
 
@@ -42,6 +42,7 @@ function MoviesCardList({ movies, showDelete, onLike }) {
                             movie={movie}
                             showDelete={showDelete}
                             onLike={onLike}
+                            onDislike={onDislike}
                         />
                     ))}
                 </ul>

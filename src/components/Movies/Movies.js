@@ -7,7 +7,7 @@ import getMovies from '../../utils/MoviesApi.js';
 import { useState, useEffect } from 'react';
 
 
-function Movies({ onLike }) {
+function Movies({ onLike, onDislike }) {
     const [isLoading, setIsLoading] = useState(false);
     const [movies, setMovies] = useState([]);
     const [results, setResults] = useState(localStorage.getItem("results") ? JSON.parse(localStorage.getItem("results")) : []);
@@ -65,7 +65,7 @@ function Movies({ onLike }) {
                 <Preloader />
             }
             {!isLoading && query !== '' &&
-                <MoviesCardList movies={results} onLike={onLike} onDislike></MoviesCardList>
+                <MoviesCardList movies={results} onLike={onLike} onDislike={onDislike}></MoviesCardList>
             }
         </main>
     );

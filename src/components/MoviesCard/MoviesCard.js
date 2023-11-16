@@ -1,17 +1,15 @@
 import { useContext } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { MyMoviesContext } from '../../contexts/MyMoviesContext';
 
 import './MoviesCard.css';
 
-function MoviesCard({ movie, showDelete, onLike }) {
+function MoviesCard({ movie, showDelete, onLike, onDislike }) {
     const nameRU = movie.nameRU;
     const durationHours = Math.floor(movie.duration / 60);
     const durationMinutes = movie.duration % 60;
     const image = movie.image.url ? 'https://api.nomoreparties.co' + movie.image.url : movie.image;
     const trailer = movie.trailerLink;
 
-    const currentUser = useContext(CurrentUserContext);
     const myMovies = useContext(MyMoviesContext);
 
     function handleLike() {
@@ -30,12 +28,17 @@ function MoviesCard({ movie, showDelete, onLike }) {
                 nameEN: movie.nameEN,
             });
         } else {
-            return
+            console.log('Дизлайк')
+            onDislike(getMyMovieID())
         }
     }
 
     function isLiked() {
         return myMovies.some((myMovie) => myMovie.movieId === movie.id)
+    }
+
+    function getMyMovieID() {
+        return myMovies.find((myMovie) => myMovie.movieId === movie.id)._id
     }
 
     return (
@@ -65,6 +68,7 @@ function MoviesCard({ movie, showDelete, onLike }) {
                         type="button"
                         className="delete-button"
                         aria-label="Удалить"
+                        onClick={() => onDislike(movie._id)}
                     />
                 }
             </div>

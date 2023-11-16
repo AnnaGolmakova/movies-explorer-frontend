@@ -119,6 +119,12 @@ function App() {
       .catch(handleError)
   }
 
+  function handleDeleteMovie(id) {
+    deleteMovie(id)
+      .then((res) => setMyMovies(myMovies.filter((movie) => movie._id !== id)))
+      .catch(handleError)
+  }
+
 
   return (
     <div className="page">
@@ -153,14 +159,14 @@ function App() {
             <Route path="/movies" element={
               <ProtectedRoute isAuthorized={isAuthorized}>
                 <Header isAuthorized={isAuthorized} />
-                <Movies onLike={handleAddMovie} onDislike />
+                <Movies onLike={handleAddMovie} onDislike={handleDeleteMovie} />
                 <Footer />
               </ProtectedRoute>
             } />
             <Route path="/saved-movies" element={
               <ProtectedRoute isAuthorized={isAuthorized}>
                 <Header isAuthorized={isAuthorized} />
-                <SavedMovies movies={myMovies} />
+                <SavedMovies movies={myMovies} onLike={handleAddMovie} onDislike={handleDeleteMovie} />
                 <Footer />
               </ProtectedRoute>
             } />
