@@ -1,4 +1,5 @@
 import './Movies.css';
+
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import SearchForm from '../SearchForm/SearchForm.js';
 import Preloader from '../Preloader/Preloader.js';
@@ -65,7 +66,7 @@ function Movies({ onLike, onDislike }) {
                 <Preloader />
             }
             {!isLoading && query !== '' &&
-                <MoviesCardList movies={results} onLike={onLike} onDislike={onDislike}></MoviesCardList>
+                <MoviesCardList movies={results} onLike={onLike} onDislike={onDislike} />
             }
         </main>
     );

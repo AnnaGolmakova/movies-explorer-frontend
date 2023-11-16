@@ -2,7 +2,7 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css'
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
+function MoviesCardList({ movies, myList = false, onLike, onDislike }) {
     const [moviesCount, setMoviesCount] = useState(12);
     const [increment, setIncrement] = useState(3);
 
@@ -13,6 +13,9 @@ function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
         }
         if (window.innerWidth <= 767) {
             setMoviesCount(5);
+        }
+        if (myList) {
+            setMoviesCount(Infinity)
         }
 
         let timer = null;
@@ -40,7 +43,7 @@ function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
                         <MoviesCard
                             key={movie.id ?? movie.movieId}
                             movie={movie}
-                            showDelete={showDelete}
+                            showDelete={myList}
                             onLike={onLike}
                             onDislike={onDislike}
                         />
@@ -49,7 +52,7 @@ function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
                 :
                 <p className="movies-list__message">Ничего не найдено</p>
             }
-            {movies.length > moviesCount &&
+            {movies.length >= moviesCount &&
                 <button
                     type="button"
                     className="more-button"
