@@ -104,6 +104,11 @@
     stroke: #EE3465;
 }
 
+.like-button_active .heart {
+    fill: #EE3465;
+    stroke: #EE3465;
+}
+
 .delete-button {
     display: none;
     background: url(../../images/delete.svg) no-repeat;

@@ -17,18 +17,15 @@ import { authorize, register, getUserInfo, setUserInfo, getMyMovies, createMovie
 import RequestError from '../../errors/request-error.js';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { MyMoviesContext } from '../../contexts/MyMoviesContext';
 
 import './App.css';
 
 function App() {
 
   const [isAuthorized, setIsAuthorized] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    _id: "",
-    name: "",
-    email: "",
-    movies: [],
-  });
+  const [currentUser, setCurrentUser] = useState({ _id: "", name: "", email: "" });
+  const [myMovies, setMyMovies] = useState([]);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -47,16 +44,9 @@ function App() {
   }, [isAuthorized])
 
   useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
-
-  useEffect(() => {
     if (isAuthorized) {
       getMyMovies().then((res) => {
-        setCurrentUser({
-          ...currentUser,
-          movies: res
-        })
+        setMyMovies(res)
       })
         .catch(console.log)
     }
@@ -73,7 +63,7 @@ function App() {
   function handleError(error) {
     console.log(error, error.code, error.body)
     if (error instanceof RequestError) {
-      if (error.status === 400) {
+      if (error.code === 400) {
         return setErrorMessage("Проверьте правильность заполнения данных");
       }
       return setErrorMessage(error.message);
@@ -119,14 +109,13 @@ function App() {
       _id: "",
       name: "",
       email: "",
-      movies: [],
     });
     navigate("/signin");
   }
 
   function handleAddMovie(movie) {
     createMovie(movie)
-      .then()
+      .then((res) => setMyMovies([...myMovies, res]))
       .catch(handleError)
   }
 
@@ -140,44 +129,46 @@ function App() {
         <Message name="success" icon="done" isOpened={true} title={successMessage} onClose={resetSuccessMessage} />
       }
       <CurrentUserContext.Provider value={currentUser}>
-        <Routes>
-          <Route path="/signup" element={
-            <Register onRegister={handleRegister} />
-          } />
-          <Route path="/signin" element={
-            <Login onLogin={handleLogin} />
-          } />
-          <Route path="/" element={
-            <>
-              <Header isAuthorized={isAuthorized} />
-              <Main />
-              <Footer />
-            </>
-          } />
-          <Route path="/profile" element={
-            <ProtectedRoute isAuthorized={isAuthorized}>
-              <Header isAuthorized={isAuthorized} />
-              <Profile onLogout={handleLogout} onEdit={handleProfileEdit} />
-            </ProtectedRoute>
-          } />
-          <Route path="/movies" element={
-            <ProtectedRoute isAuthorized={isAuthorized}>
-              <Header isAuthorized={isAuthorized} />
-              <Movies onLike={handleAddMovie} onDislike />
-              <Footer />
-            </ProtectedRoute>
-          } />
-          <Route path="/saved-movies" element={
-            <ProtectedRoute isAuthorized={isAuthorized}>
-              <Header isAuthorized={isAuthorized} />
-              <SavedMovies movies={[]} />
-              <Footer />
-            </ProtectedRoute>
-          } />
-          <Route path="*" element={
-            <NotFound />
-          } />
-        </Routes>
+        <MyMoviesContext.Provider value={myMovies}>
+          <Routes>
+            <Route path="/signup" element={
+              <Register onRegister={handleRegister} />
+            } />
+            <Route path="/signin" element={
+              <Login onLogin={handleLogin} />
+            } />
+            <Route path="/" element={
+              <>
+                <Header isAuthorized={isAuthorized} />
+                <Main />
+                <Footer />
+              </>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute isAuthorized={isAuthorized}>
+                <Header isAuthorized={isAuthorized} />
+                <Profile onLogout={handleLogout} onEdit={handleProfileEdit} />
+              </ProtectedRoute>
+            } />
+            <Route path="/movies" element={
+              <ProtectedRoute isAuthorized={isAuthorized}>
+                <Header isAuthorized={isAuthorized} />
+                <Movies onLike={handleAddMovie} onDislike />
+                <Footer />
+              </ProtectedRoute>
+            } />
+            <Route path="/saved-movies" element={
+              <ProtectedRoute isAuthorized={isAuthorized}>
+                <Header isAuthorized={isAuthorized} />
+                <SavedMovies movies={myMovies} />
+                <Footer />
+              </ProtectedRoute>
+            } />
+            <Route path="*" element={
+              <NotFound />
+            } />
+          </Routes>
+        </MyMoviesContext.Provider >
       </CurrentUserContext.Provider >
     </div >
   );
