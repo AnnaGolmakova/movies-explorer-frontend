@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
@@ -13,7 +13,7 @@ import NotFound from '../NotFound/NotFound.js';
 import Message from '../Message/Message.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
-import { authorize, register, getUserInfo, setUserInfo, getMyMovies, createMovie, deleteMovie } from '../../utils/MainApi.js';
+import { authorize, register, logout, getUserInfo, setUserInfo, getMyMovies, createMovie, deleteMovie } from '../../utils/MainApi.js';
 import RequestError from '../../errors/request-error.js';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -24,6 +24,7 @@ import './App.css';
 function App() {
 
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({ _id: "", name: "", email: "" });
   const [myMovies, setMyMovies] = useState([]);
 
@@ -39,9 +40,12 @@ function App() {
         setCurrentUser(res)
       })
       .catch((err) => {
-        setIsAuthorized(false)
+        handleLogout();
       })
-  }, [isAuthorized])
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }, [])
 
   useEffect(() => {
     if (isAuthorized) {
@@ -100,17 +104,15 @@ function App() {
   }
 
   function handleLogout() {
-    fetch(`http://localhost:3001/signout`, {
-      method: 'GET',
-      credentials: 'include'
-    })
+    logout().catch(console.log);
     setIsAuthorized(false);
     setCurrentUser({
       _id: "",
       name: "",
       email: "",
     });
-    navigate("/signin");
+    setMyMovies([]);
+    navigate("/");
   }
 
   function handleAddMovie(movie) {
@@ -134,8 +136,8 @@ function App() {
       {successMessage &&
         <Message name="success" icon="done" isOpened={true} title={successMessage} onClose={resetSuccessMessage} />
       }
-      <CurrentUserContext.Provider value={currentUser}>
-        <MyMoviesContext.Provider value={myMovies}>
+      {!isLoading &&
+        <CurrentUserContext.Provider value={currentUser}>
           <Routes>
             <Route path="/signup" element={
               <Register onRegister={handleRegister} />
@@ -158,24 +160,28 @@ function App() {
             } />
             <Route path="/movies" element={
               <ProtectedRoute isAuthorized={isAuthorized}>
-                <Header isAuthorized={isAuthorized} />
-                <Movies onLike={handleAddMovie} onDislike={handleDeleteMovie} />
-                <Footer />
+                <MyMoviesContext.Provider value={myMovies}>
+                  <Header isAuthorized={isAuthorized} />
+                  <Movies onLike={handleAddMovie} onDislike={handleDeleteMovie} />
+                  <Footer />
+                </MyMoviesContext.Provider >
               </ProtectedRoute>
             } />
             <Route path="/saved-movies" element={
               <ProtectedRoute isAuthorized={isAuthorized}>
-                <Header isAuthorized={isAuthorized} />
-                <SavedMovies movies={myMovies} onLike={handleAddMovie} onDislike={handleDeleteMovie} />
-                <Footer />
+                <MyMoviesContext.Provider value={myMovies}>
+                  <Header isAuthorized={isAuthorized} />
+                  <SavedMovies movies={myMovies} onLike={handleAddMovie} onDislike={handleDeleteMovie} />
+                  <Footer />
+                </MyMoviesContext.Provider >
               </ProtectedRoute>
             } />
             <Route path="*" element={
               <NotFound />
             } />
           </Routes>
-        </MyMoviesContext.Provider >
-      </CurrentUserContext.Provider >
+        </CurrentUserContext.Provider >
+      }
     </div >
   );
 }

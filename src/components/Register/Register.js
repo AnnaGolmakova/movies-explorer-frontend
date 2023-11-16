@@ -5,9 +5,8 @@ import './Register.css';
 import logo from '../../images/logo.svg';
 
 
-
 function Register({ onRegister }) {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
 
     function handleChange(event) {

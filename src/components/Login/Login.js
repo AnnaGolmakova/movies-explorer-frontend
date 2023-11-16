@@ -6,7 +6,7 @@ import logo from '../../images/logo.svg';
 
 
 function Login({ onLogin }) {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
 
     function handleChange(event) {

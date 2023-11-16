@@ -31,6 +31,13 @@ export const register = (name, email, password) => {
     })
 };
 
+export const logout = () => {
+    return request(`${BASE_URL}/signout`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+};
+
 export const getUserInfo = () => {
     return request(`${BASE_URL}/users/me`, {
         method: "GET",

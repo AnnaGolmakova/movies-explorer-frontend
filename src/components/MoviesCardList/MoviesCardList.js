@@ -38,7 +38,7 @@ function MoviesCardList({ movies, showDelete, onLike, onDislike }) {
                 <ul className="movies-list">
                     {movies.slice(0, moviesCount).map((movie, i) => (
                         <MoviesCard
-                            key={i}
+                            key={movie.id ?? movie.movieId}
                             movie={movie}
                             showDelete={showDelete}
                             onLike={onLike}
