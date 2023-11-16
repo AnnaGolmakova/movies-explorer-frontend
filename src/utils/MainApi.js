@@ -1,7 +1,7 @@
 import checkResponse from './checkResponse.js';
 
-// const BASE_URL = `https://api.movies.golmakova.nomoredomainsrocks.ru`;
-const BASE_URL = `http://localhost:3001`;
+const BASE_URL = `https://api.movies.golmakova.nomoredomainsrocks.ru`;
+
 
 
 function request(url, options) {
