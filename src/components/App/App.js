@@ -10,8 +10,10 @@ import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 import NotFound from '../NotFound/NotFound.js';
+import Message from '../Message/Message.js';
 
 import { authorize, register, getUserInfo, setUserInfo, getMyMovies, createMovie, deleteMovie } from '../../utils/MainApi.js';
+import RequestError from '../../errors/request-error.js';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -26,30 +28,48 @@ function App() {
     "movies": [],
   });
 
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    getUserInfo()
+      .then((res) => {
+        setIsAuthorized(true)
+        setCurrentUser({
+          name: res.name,
+          email: res.email
+        })
+      })
+      .catch((err) => {
+        setIsAuthorized(false)
+      })
+  }, [])
+
+  useEffect(() => {
     if (isAuthorized) {
-      getUserInfo()
-        .then((res) => {
-          console.log(res)
-          setCurrentUser({
-            name: res.name,
-            email: res.email
-          })
-        })
-        .catch(() => {
-          setIsAuthorized(false)
-        })
       getMyMovies().then((res) => {
         setCurrentUser({
           ...currentUser,
           movies: res
         })
       })
+        .catch(console.log)
     }
-  }, [isAuthorized])
+  }, [currentUser, isAuthorized])
 
+  function resetErrorMessage() {
+    setErrorMessage(null);
+  }
+
+  function handleError(error) {
+    console.log(error, error.code)
+    if (error instanceof RequestError) {
+      setErrorMessage(error.message);
+    } else {
+      setErrorMessage("Что-то пошло не так! Попробуйте ещё раз.");
+    }
+  }
 
   function handleLogin(data) {
     authorize(data.email, data.password)
@@ -57,7 +77,7 @@ function App() {
         setIsAuthorized(true);
         navigate('/movies')
       })
-      .catch(console.log)
+      .catch(handleError)
   }
 
   function handleProfileEdit(data) {
@@ -65,9 +85,8 @@ function App() {
       .then((res) => {
         setCurrentUser({ ...currentUser, name: data.name, email: data.email })
       })
-      .catch(console.log)
+      .catch(handleError)
   }
-
 
   function handleRegister(data) {
     register(data.name, data.email, data.password)
@@ -75,10 +94,14 @@ function App() {
         setIsAuthorized(true);
         navigate('/movies')
       })
-      .catch(console.log)
+      .catch(handleError)
   }
 
   function handleLogout() {
+    fetch(`http://localhost:3001/signout`, {
+      method: 'GET',
+      credentials: 'include'
+    })
     setIsAuthorized(false);
     navigate("/signin");
   }
@@ -86,13 +109,15 @@ function App() {
   function handleAddMovie(movie) {
     createMovie(movie)
       .then()
-      .catch(console.log)
+      .catch(handleError)
   }
-
 
 
   return (
     <div className="page">
+      {errorMessage &&
+        <Message name="error" icon="error" isOpened={true} title={errorMessage} onClose={resetErrorMessage} />
+      }
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route path="/signup" element={
@@ -132,8 +157,8 @@ function App() {
             <NotFound />
           } />
         </Routes>
-      </CurrentUserContext.Provider>
-    </div>
+      </CurrentUserContext.Provider >
+    </div >
   );
 }
 

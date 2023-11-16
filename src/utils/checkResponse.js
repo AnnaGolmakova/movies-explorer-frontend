@@ -1,8 +1,13 @@
+import RequestError from "../errors/request-error";
+
 function checkResponse(res) {
+    const json = res.json();
     if (res.ok) {
-        return res.json();
+        return json;
     }
-    return Promise.reject(res.json());
+    return json.then((result) => {
+        throw new RequestError(result.message, res.status);
+    });
 }
 
 export default checkResponse;
