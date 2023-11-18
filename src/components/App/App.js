@@ -142,10 +142,14 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
           <Routes>
             <Route path="/signup" element={
-              <Register onRegister={handleRegister} />
+              <ProtectedRoute isAuthorized={!isAuthorized}>
+                <Register onRegister={handleRegister} />
+              </ProtectedRoute>
             } />
             <Route path="/signin" element={
-              <Login onLogin={handleLogin} />
+              <ProtectedRoute isAuthorized={!isAuthorized}>
+                <Login onLogin={handleLogin} />
+              </ProtectedRoute>
             } />
             <Route path="/" element={
               <>
