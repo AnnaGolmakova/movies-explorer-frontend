@@ -2,17 +2,20 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './MoviesCardList.css'
 import { useState, useEffect } from 'react';
 
+import { WIDTH_MOBILE, WIDTH_TABLET, MOVIES_PRELOADED, MOVIES_PRELOADED_TABLET, MOVIES_PRELOADED_MOBILE, MOVIES_LOADED, MOVIES_LOADED_TABLET, MOVIES_LOADED_MOBILE } from '../../constants.js';
+
 function MoviesCardList({ movies, myList = false, onLike, onDislike }) {
-    const [moviesCount, setMoviesCount] = useState(12);
-    const [increment, setIncrement] = useState(3);
+    const [moviesCount, setMoviesCount] = useState(MOVIES_PRELOADED);
+    const [increment, setIncrement] = useState(MOVIES_LOADED);
 
     useEffect(() => {
-        if (window.innerWidth <= 1024) {
-            setMoviesCount(8);
-            setIncrement(2);
+        if (window.innerWidth <= WIDTH_TABLET) {
+            setMoviesCount(MOVIES_PRELOADED_TABLET);
+            setIncrement(MOVIES_LOADED_TABLET);
         }
-        if (window.innerWidth <= 767) {
-            setMoviesCount(5);
+        if (window.innerWidth <= WIDTH_MOBILE) {
+            setMoviesCount(MOVIES_PRELOADED_MOBILE);
+            setMoviesCount(MOVIES_LOADED_MOBILE);
         }
         if (myList) {
             setMoviesCount(Infinity)
@@ -23,7 +26,7 @@ function MoviesCardList({ movies, myList = false, onLike, onDislike }) {
         function handleResize() {
             if (timer) return;
 
-            window.innerWidth <= 1024 ? setIncrement(2) : setIncrement(3);
+            window.innerWidth <= WIDTH_TABLET ? setIncrement(MOVIES_LOADED_TABLET) : setIncrement(MOVIES_LOADED);
 
             timer = setTimeout(() => {
                 clearTimeout(timer)
