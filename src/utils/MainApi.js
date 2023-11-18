@@ -1,14 +1,13 @@
 import checkResponse from './checkResponse.js';
 
-const BASE_URL = `https://api.movies.golmakova.nomoredomainsrocks.ru`;
-
-
+const BASE_URL = process.env.REACT_APP_MAIN_URL ? process.env.REACT_APP_MAIN_URL : `https://api.movies.golmakova.nomoredomainsrocks.ru`;
 
 function request(url, options) {
     return fetch(url, options).then(checkResponse)
 }
 
 export const authorize = (email, password) => {
+    console.log(process.env.MAIN_URL)
     return request(`${BASE_URL}/signin`, {
         method: 'POST',
         credentials: 'include',
