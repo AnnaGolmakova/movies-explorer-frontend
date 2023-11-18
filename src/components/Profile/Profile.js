@@ -3,7 +3,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
 
-function Profile({ onEdit, onLogout }) {
+function Profile({ disabled = false, onEdit, onLogout }) {
     const [formData, setFormData] = useState({});
     const [errors, setErrors] = useState({});
 
@@ -56,6 +56,7 @@ function Profile({ onEdit, onLogout }) {
                             value={formData.name}
                             placeholder="Ваше имя"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                             pattern="[A-Za-z\u0400-\u04ff \-]+" />
                         <span className="profile__error">{errors.name}
@@ -73,6 +74,7 @@ function Profile({ onEdit, onLogout }) {
                             value={formData.email}
                             placeholder="example@example.ru"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                             pattern=".+@.+\..+" />
                         <span className="profile__error">{errors.email}</span>
@@ -82,7 +84,7 @@ function Profile({ onEdit, onLogout }) {
                     <button
                         type="button"
                         className="profile-button"
-                        disabled={isEmpty() || isValid() || !isEdited()}
+                        disabled={isEmpty() || isValid() || !isEdited() || disabled}
                         onClick={handleSubmit}
                     >
                         Редактировать

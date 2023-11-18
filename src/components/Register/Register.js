@@ -5,7 +5,7 @@ import './Register.css';
 import logo from '../../images/logo.svg';
 
 
-function Register({ onRegister }) {
+function Register({ disabled = false, onRegister }) {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
 
@@ -47,6 +47,7 @@ function Register({ onRegister }) {
                             className={`register__input ${errors.name ? 'register__input_error' : ''}`}
                             placeholder="Ваше имя"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                             pattern="[A-Za-z\u0400-\u04ff \-]+"
                         />
@@ -59,6 +60,7 @@ function Register({ onRegister }) {
                             className={`register__input ${errors.email ? 'register__input_error' : ''}`}
                             placeholder="example@example.ru"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                             pattern=".+@.+\..+"
                         />
@@ -72,12 +74,13 @@ function Register({ onRegister }) {
                             className={`register__input ${errors.password ? 'register__input_error' : ''}`}
                             placeholder="Введите пароль"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                         />
                         <span className="form__error password-error">{errors.password}</span>
                     </div>
                     <button
-                        type="submit" className="save-button" disabled={isEmpty() || isValid()}
+                        type="submit" className="save-button" disabled={isEmpty() || isValid() || disabled}
                     >
                         Зарегистрироваться
                     </button>

@@ -25,6 +25,7 @@ function App() {
 
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [awaitingRequest, setAwaitingRequest] = useState(false);
   const [currentUser, setCurrentUser] = useState({ _id: "", name: "", email: "" });
   const [myMovies, setMyMovies] = useState([]);
 
@@ -77,6 +78,7 @@ function App() {
   }
 
   function handleLogin(data) {
+    setAwaitingRequest(true);
     authorize(data.email, data.password)
       .then(() => getUserInfo())
       .then((res) => {
@@ -85,23 +87,34 @@ function App() {
         navigate('/movies')
       })
       .catch(handleError)
+      .finally(() => {
+        setAwaitingRequest(false)
+      });
   }
 
   function handleProfileEdit(data) {
+    setAwaitingRequest(true);
     setUserInfo(data.name, data.email)
       .then((res) => {
         setCurrentUser({ ...currentUser, name: data.name, email: data.email })
         setSuccessMessage("Вы успешно отредактировали профиль");
       })
       .catch(handleError)
+      .finally(() => {
+        setAwaitingRequest(false)
+      });
   }
 
   function handleRegister(data) {
+    setAwaitingRequest(true);
     register(data.name, data.email, data.password)
       .then((res) => {
         handleLogin(data);
       })
       .catch(handleError)
+      .finally(() => {
+        setAwaitingRequest(false)
+      });
   }
 
   function handleLogout() {
@@ -143,12 +156,12 @@ function App() {
           <Routes>
             <Route path="/signup" element={
               <ProtectedRoute isAuthorized={!isAuthorized}>
-                <Register onRegister={handleRegister} />
+                <Register onRegister={handleRegister} disabled={awaitingRequest} />
               </ProtectedRoute>
             } />
             <Route path="/signin" element={
               <ProtectedRoute isAuthorized={!isAuthorized}>
-                <Login onLogin={handleLogin} />
+                <Login onLogin={handleLogin} disabled={awaitingRequest} />
               </ProtectedRoute>
             } />
             <Route path="/" element={
@@ -161,7 +174,7 @@ function App() {
             <Route path="/profile" element={
               <ProtectedRoute isAuthorized={isAuthorized}>
                 <Header isAuthorized={isAuthorized} />
-                <Profile onLogout={handleLogout} onEdit={handleProfileEdit} />
+                <Profile onLogout={handleLogout} onEdit={handleProfileEdit} disabled={awaitingRequest} />
               </ProtectedRoute>
             } />
             <Route path="/movies" element={

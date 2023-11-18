@@ -5,7 +5,7 @@ import './Login.css';
 import logo from '../../images/logo.svg';
 
 
-function Login({ onLogin }) {
+function Login({ disabled = false, onLogin }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
 
@@ -48,6 +48,7 @@ function Login({ onLogin }) {
                             className={`form__input ${errors.email ? 'form__input_error' : ''}`}
                             placeholder="example@example.ru"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                             pattern=".+@.+\..+"
                         />
@@ -61,12 +62,13 @@ function Login({ onLogin }) {
                             className={`form__input ${errors.email ? 'form__input_error' : ''}`}
                             placeholder="Введите пароль"
                             required
+                            disabled={disabled}
                             onChange={handleChange}
                         />
                         <span className="form__input-error password-input-error">{errors.password}</span>
                     </div>
                     <button
-                        type="submit" className="save-button" disabled={isEmpty() || isValid()}
+                        type="submit" className="save-button" disabled={isEmpty() || isValid() || disabled}
                     >
                         Войти
                     </button>
