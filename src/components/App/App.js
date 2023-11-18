@@ -78,8 +78,10 @@ function App() {
 
   function handleLogin(data) {
     authorize(data.email, data.password)
+      .then(() => getUserInfo())
       .then((res) => {
-        setIsAuthorized(true);
+        setIsAuthorized(true)
+        setCurrentUser(res)
         navigate('/movies')
       })
       .catch(handleError)
@@ -97,8 +99,7 @@ function App() {
   function handleRegister(data) {
     register(data.name, data.email, data.password)
       .then((res) => {
-        setIsAuthorized(true);
-        navigate('/movies')
+        handleLogin(data);
       })
       .catch(handleError)
   }
@@ -112,6 +113,7 @@ function App() {
       email: "",
     });
     setMyMovies([]);
+    localStorage.clear();
     navigate("/");
   }
 
