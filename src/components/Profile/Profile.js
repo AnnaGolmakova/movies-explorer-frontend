@@ -58,6 +58,8 @@ function Profile({ onEdit, onLogout }) {
                             required
                             onChange={handleChange}
                             pattern="[A-Za-z\u0400-\u04ff \-]+" />
+                        <span className="profile__error">{errors.name}
+                        </span>
                     </div>
                     <div className="profile__field">
                         <label htmlFor="email" className="profile__label">E-mail</label>
@@ -73,6 +75,7 @@ function Profile({ onEdit, onLogout }) {
                             required
                             onChange={handleChange}
                             pattern=".+@.+\..+" />
+                        <span className="profile__error">{errors.email}</span>
                     </div>
                 </form>
                 <div className='profile__buttons'>
